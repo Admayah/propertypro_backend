@@ -1,10 +1,10 @@
 import express from 'express';
-import { createAgent, logAgent } from '../controlllers/AgentSignup';
+import { createAgent, loginAgent } from '../controllers/AgentAuthentication';
 import { validateUserInput } from '../middleware';
 
 const indexRouter = express.Router();
 
 indexRouter.post('/signup', validateUserInput, createAgent);
-indexRouter.post('/login', logAgent);
+indexRouter.post('/login', loginAgent);
 
 export default indexRouter;

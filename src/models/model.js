@@ -11,7 +11,6 @@ class Model {
     let query = `SELECT ${columns} FROM ${this.table}`;
 
     if (clause) query += clause;
-    console.log(query, '---> ');
     return this.pool.query(query);
   }
 
