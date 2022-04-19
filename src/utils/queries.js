@@ -4,9 +4,9 @@ CREATE TABLE "agents" (
   "id" serial primary key,
   "first_name" varchar(255) NOT NULL,
   "last_name" varchar(255) NOT NULL,
-  "email" varchar UNIQUE NOT NULL,
-  "password" varchar NOT NULL,
-  "phone_no" varchar NOT NULL
+  "email" varchar(255) UNIQUE NOT NULL,
+  "password" varchar(255) NOT NULL,
+  "phone_no" integer NOT NULL
 );
 `;
 
@@ -29,10 +29,6 @@ CREATE TABLE "properties" (
   "updated_at" timestamp
 );
 `;
-
-// export const addConstraint = `
-// ALTER TABLE "properties" ADD CONSTRAINT "id" FOREIGN KEY ("agent_id") REFERENCES "agents" ("id");
-// `;
 
 export const dropAgentTable = 'DROP TABLE agents';
 export const dropPropertyTable = 'DROP TABLE properties';

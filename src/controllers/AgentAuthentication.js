@@ -15,7 +15,7 @@ export const createAgent = async (req, res) => {
   try {
     const validEmail = await agentModel.select('*', ` WHERE  email = '${email}' `);
     if (validEmail.rows.length > 0) {
-      return res.status(409).json({ messages: 'Email already Exist' });
+      return res.status(409).json({ message: 'Email already Exist' });
     }
     const data = await agentModel.insertWithReturn(columns, values);
     const newUser = { firstName, lastName, email };
@@ -23,9 +23,9 @@ export const createAgent = async (req, res) => {
     const token = jwt.sign({ newUser, id: data.rows.id }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
     });
-    res.status(201).send({ user: newUser, token, messages: 'Account created successfully' });
+    res.status(201).send({ user: newUser, token, message: 'Account created successfully' });
   } catch (err) {
-    res.status(400).json({ messages: err.stack });
+    res.status(400).json({ message: err.stack });
   }
 };
 
@@ -35,13 +35,13 @@ export const loginAgent = async (req, res) => {
     const validEmail = await agentModel.select('*', ` WHERE  email = '${email}' `);
     if (!validEmail.rows.length) return res.status(400).json({ messages: 'Invalid email or password' });
     const validPassword = await bcrypt.compare(password, validEmail.rows[0].password);
-    if (!validPassword) return res.status(400).json({ messages: 'Invalid email or password' });
+    if (!validPassword) return res.status(400).json({ message: 'Invalid email or password' });
     const user = { email };
     const token = jwt.sign({ user }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
     });
-    return res.status(201).send({ user, token, messages: 'Logged in' });
+    return res.status(201).send({ user, token, message: 'Logged in' });
   } catch (err) {
-    res.status(400).json({ messages: err.stack });
+    res.status(400).json({ message: err.stack });
   }
 };

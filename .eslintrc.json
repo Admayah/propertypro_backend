@@ -27,3 +27,8 @@
       "import/prefer-default-export": [0]
     }
   }
+
+  // TEST_ENV_VARIABLE="Environment variable is coming across"
+// TEST_ENV_VARIABLE_FOR_ABOUT = "About page"
+// CONNECTION_STRING = "postgresql://postgres:oluwatobi@localhost:5432/property_pro"
+// TOKEN_KEY = "welcometopropertypro"
