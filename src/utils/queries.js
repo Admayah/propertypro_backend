@@ -23,10 +23,10 @@ CREATE TABLE "properties" (
   "no_of_bathrooms" integer NOT NULL,
   "no_of_garage" integer NOT NULL,
   "no_of_store" integer NOT NULL,
-  "year_of_build" integer NOT NULL,
+  "year_of_build" varchar NOT NULL,
   "purpose" varchar NOT NULL,
-  "created_at" timestamp,
-  "updated_at" timestamp
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 `;
 

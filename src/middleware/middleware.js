@@ -38,6 +38,7 @@ export const validateUserInput = (req, res, next) => {
   return next();
 };
 
+// eslint-disable-next-line consistent-return
 export const validatePropertyInput = (req, res, next) => {
   const {
     image, title, address, landArea, noOfRoom, noOfBath,
@@ -45,34 +46,34 @@ export const validatePropertyInput = (req, res, next) => {
   } = req.body;
 
   if (!checkImageExtension(image)) {
-    res.status(400).send('Property image must be uploaded');
+    return res.status(400).send('Property image must be uploaded');
   }
-  if (title === '') {
-    res.status(400).send('Property require title');
+  if (!title || title.trim().length < 5) {
+    return res.status(400).json({ message: 'Title must be more than 5 characters' });
   }
-  if (address === '') {
-    res.status(400).send('Property requires address');
+  if (!address || address.trim().length < 5) {
+    return res.status(400).json({ message: 'address must be more than 5 characters' });
   }
-  if (landArea === '') {
-    res.status(400).send('Property land-area is required');
+  if (!landArea || landArea.trim().length < 5) {
+    return res.status(400).json({ message: 'landara must be more than 5 characters' });
   }
-  if (noOfRoom === '') {
-    res.status(400).send('no of rooms are required');
+  if (!noOfRoom || typeof (noOfRoom) !== 'number') {
+    return res.status(400).json({ message: 'Number of rooms are required and must be number' });
   }
-  if (noOfBath === '') {
-    res.status(400).send('no of baths are required');
+  if (!noOfBath || typeof (noOfBath) !== 'number') {
+    return res.status(400).json({ message: 'Number of baths are  and must be number' });
   }
-  if (noOfGarage === '') {
-    res.status(400).send('no of garage are required');
+  if (!noOfGarage || typeof (noOfGarage) !== 'number') {
+    return res.status(400).json({ message: 'Number of garages are required and must be number' });
   }
-  if (noOfStore === '') {
-    res.status(400).send('no of stores are required');
+  if (!noOfStore || typeof (noOfStore) !== 'number') {
+    return res.status(400).json({ message: 'Number of stores are required and must be number' });
   }
-  if (yearBuild === '') {
-    res.status(400).send('year of build is required');
+  if (!yearBuild || typeof (noOfRoom) !== 'number') {
+    return res.status(400).json({ message: 'Year of build is required and must be number' });
   }
-  if (purpose === '') {
-    res.status(400).send('specify purpose of property');
+  if (!purpose) {
+    return res.status(400).json({ message: 'purpose of property' });
   }
   next();
 };

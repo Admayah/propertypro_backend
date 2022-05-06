@@ -19,10 +19,10 @@ export const createProperty = async (req, res) => {
 };
 
 // eslint-disable-next-line consistent-return
-export const allProperties = async (req, res) => {
+export const getAllProperties = async (req, res) => {
   try {
     const getProperties = await propertyModel.select('*');
-    if (getProperties.rows === 0) {
+    if (getProperties.rows.length === 0) {
       return res.status(409).json({ message: 'no property' });
     }
     res.status(200).json(getProperties.rows);
@@ -35,7 +35,7 @@ export const getPropertyById = async (req, res) => {
   const { id } = req.params;
   try {
     const getProperty = await propertyModel.select('*', ` WHERE  id = '${id}' `);
-    if (getProperty.rows === 0) {
+    if (getProperty.rows.length === 0) {
       return res.status(409).json({ message: 'no property' });
     }
     res.status(200).json(getProperty.rows);
@@ -45,12 +45,24 @@ export const getPropertyById = async (req, res) => {
 };
 
 // eslint-disable-next-line consistent-return
-export const editProperty = async (req, res, next) => {
-  const { id } = req.params;
+export const getAgentProperties = async (req, res) => {
+  const { id } = req.user.newUser;
   try {
-    // eslint-disable-next-line no-unused-vars
-    const data = await propertyModel.update(req.body, ` WHERE "id" = ${id} `);
-    return res.status(201).send({ message: 'user property is edited successfully', success: true });
+    const getProperties = await propertyModel.select('*', ` WHERE agent_id = ${id} `);
+    return res.status(200).json(getProperties.rows);
+  } catch (err) {
+    res.status(500).json({ messages: err.stack });
+  }
+};
+
+// eslint-disable-next-line consistent-return
+export const editProperty = async (req, res, next) => {
+  const userId = req.params.id;
+  const { id } = req.user.newUser;
+  const editedInfo = req.body;
+  try {
+    await propertyModel.update(req.body, `  WHERE id = ${userId}  AND agent_id = ${id} `);
+    return res.status(201).send({ success: true, editedInfo, message: 'Property updated successfully' });
   } catch (err) {
     res.status(500).json({ messages: err.stack });
   }
@@ -59,25 +71,12 @@ export const editProperty = async (req, res, next) => {
 
 // eslint-disable-next-line consistent-return
 export const deleteProperty = async (req, res) => {
-  const { id } = req.params;
+  const userId = req.params.id;
+  const { id } = req.user.newUser;
   try {
-    const getProperty = await propertyModel.delete(` WHERE  id = '${id}' `);
-    if (getProperty.rows === 0) {
-      return res.status(409).json({ message: 'no property' });
-    }
-    res.status(200).json(getProperty.rows);
+    await propertyModel.delete(` WHERE id = ${userId} AND agent_id = ${id} `);
+    res.status(200).json({ message: 'Property deleted successfully' });
   } catch (err) {
     res.status(500).json({ messages: err.stack.messages });
-  }
-};
-
-// eslint-disable-next-line consistent-return
-export const agentProperties = async (req, res) => {
-  const userId = req.params.id;
-  try {
-    const getProperties = await propertyModel.select('*', ` WHERE agent_id = ${userId} `);
-    return res.status(200).json(getProperties.rows);
-  } catch (err) {
-    res.status(500).json({ messages: err.stack });
   }
 };

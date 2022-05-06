@@ -29,6 +29,7 @@ class Model {
     const selectedColumn = keys.forEach((key) => {
       const query = `UPDATE  ${this.table} 
       SET ${key} = '${column[key]}' ${clause}
+      RETURNING address
       `;
       return this.pool.query(query);
     });
