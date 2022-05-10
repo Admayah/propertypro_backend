@@ -46,7 +46,7 @@ export const validatePropertyInput = (req, res, next) => {
   } = req.body;
 
   if (!checkImageExtension(image)) {
-    return res.status(400).send('Property image must be uploaded');
+    return res.status(400).json({message: 'Property image must be uploaded'});
   }
   if (!title || title.trim().length < 5) {
     return res.status(400).json({ message: 'Title must be more than 5 characters' });

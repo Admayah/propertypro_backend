@@ -23,7 +23,7 @@ export const getAllProperties = async (req, res) => {
   try {
     const getProperties = await propertyModel.select('*');
     if (getProperties.rows.length === 0) {
-      return res.status(409).json({ message: 'no property' });
+      return res.status(404).json({ message: 'Post a property' });
     }
     res.status(200).json(getProperties.rows);
   } catch (err) {
@@ -36,7 +36,7 @@ export const getPropertyById = async (req, res) => {
   try {
     const getProperty = await propertyModel.select('*', ` WHERE  id = '${id}' `);
     if (getProperty.rows.length === 0) {
-      return res.status(409).json({ message: 'no property' });
+      return res.status(404).json({ message: 'no property' });
     }
     res.status(200).json(getProperty.rows);
   } catch (err) {
@@ -62,7 +62,7 @@ export const editProperty = async (req, res, next) => {
   const editedInfo = req.body;
   try {
     await propertyModel.update(req.body, `  WHERE id = ${userId}  AND agent_id = ${id} `);
-    return res.status(201).send({ success: true, editedInfo, message: 'Property updated successfully' });
+    return res.status(200).send({ success: true, editedInfo, message: 'Property updated successfully' });
   } catch (err) {
     res.status(500).json({ messages: err.stack });
   }

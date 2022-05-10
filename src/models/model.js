@@ -25,11 +25,9 @@ class Model {
 
   async update(column, clause) {
     const keys = Object.keys(column);
-    // eslint-disable-next-line no-unused-vars
-    const selectedColumn = keys.forEach((key) => {
+    keys.forEach((key) => {
       const query = `UPDATE  ${this.table} 
       SET ${key} = '${column[key]}' ${clause}
-      RETURNING address
       `;
       return this.pool.query(query);
     });
