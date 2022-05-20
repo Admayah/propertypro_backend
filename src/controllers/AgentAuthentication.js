@@ -4,6 +4,7 @@ import Model from '../models/model';
 
 const agentModel = new Model('agents');
 
+// eslint-disable-next-line consistent-return
 export const createAgent = async (req, res) => {
   const saltRounds = 5;
   const {
@@ -18,8 +19,10 @@ export const createAgent = async (req, res) => {
       return res.status(409).json({ message: 'Email already Exist' });
     }
     const data = await agentModel.insertWithReturn(columns, values);
-    const newUser = { firstName, lastName, email };
-
+    const { id } = data.rows[0];
+    const newUser = {
+      id, firstName, lastName, email
+    };
     const token = jwt.sign({ newUser, id: data.rows.id }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
     });
@@ -29,6 +32,7 @@ export const createAgent = async (req, res) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 export const loginAgent = async (req, res) => {
   const { email, password } = req.body;
   try {

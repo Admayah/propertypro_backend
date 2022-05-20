@@ -19,14 +19,14 @@ CREATE TABLE "properties" (
   "title" varchar(255) NOT NULL,
   "address" varchar(255) NOT NULL,
   "land_area" varchar NOT NULL,
-  "no_of_rooms" int NOT NULL,
-  "no_of_bathrooms" int NOT NULL,
-  "no_of_garage" int NOT NULL,
-  "no_of_store" int NOT NULL,
-  "year_of_build" int NOT NULL,
+  "no_of_rooms" integer NOT NULL,
+  "no_of_bathrooms" integer NOT NULL,
+  "no_of_garage" integer NOT NULL,
+  "no_of_store" integer NOT NULL,
+  "year_of_build" varchar NOT NULL,
   "purpose" varchar NOT NULL,
-  "created_at" timestamp,
-  "updated_at" timestamp
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 `;
 

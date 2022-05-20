@@ -1,6 +1,6 @@
 import express from 'express';
 import { createAgent, loginAgent } from '../controllers/AgentAuthentication';
-import { validateUserInput } from '../middleware';
+import { validateUserInput } from '../middleware/middleware';
 
 const indexRouter = express.Router();
 
