@@ -3,41 +3,42 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-      "preset": "babel ./src -out-dir build",
-      "start": "node ./build/bin/www",
-      "startdev": "nodemon --exec babel-node ./src/bin/www",
-      "runQuery": "babel-node ./src/utils/runQuery"
+        "preset": "babel ./src -out-dir build",
+        "start": "node ./build/bin/www",
+        "startdev": "nodemon --exec babel-node ./src/bin/www",
+        "runQuery": "babel-node ./src/utils/runQuery"
     },
     "dependencies": {
-      "axios": "^0.26.1",
-      "bcrypt": "^5.0.1",
-      "cookie-parser": "~1.4.4",
-      "debug": "~2.6.9",
-      "dotenv": "^16.0.0",
-      "eslint": "^8.11.0",
-      "eslint-config-airbnb-base": "^15.0.0",
-      "eslint-plugin-import": "^2.25.4",
-      "express": "~4.16.1",
-      "http-errors": "~1.6.3",
-      "jsonwebtoken": "^8.5.1",
-      "lint": "^0.7.0",
-      "morgan": "~1.9.1",
-      "pg": "^8.7.3",
-      "prettier": "^2.6.0",
-      "pretty": "^2.0.0"
+        "axios": "^0.26.1",
+        "bcrypt": "^5.0.1",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "dotenv": "^16.0.0",
+        "eslint": "^8.11.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.25.4",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "jsonwebtoken": "^8.5.1",
+        "lint": "^0.7.0",
+        "morgan": "~1.9.1",
+        "pg": "^8.7.3",
+        "prettier": "^2.6.0",
+        "pretty": "^2.0.0",
+        "swagger-jsdoc": "5.0.1",
+        "swagger-ui-express": "^4.4.0"
     },
     "devDependencies": {
-      "@babel/cli": "^7.17.6",
-      "@babel/core": "^7.17.7",
-      "@babel/node": "^7.16.8",
-      "@babel/plugin-transform-runtime": "^7.17.0",
-      "@babel/preset-env": "^7.16.11",
-      "@babel/register": "^7.17.7",
-      "@babel/runtime": "^7.17.7",
-      "nodemon": "^2.0.15"
+        "@babel/cli": "^7.17.6",
+        "@babel/core": "^7.17.7",
+        "@babel/node": "^7.16.8",
+        "@babel/plugin-transform-runtime": "^7.17.0",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/register": "^7.17.7",
+        "@babel/runtime": "^7.17.7",
+        "nodemon": "^2.0.15"
     },
     "lint": "./node_modules/.bin/eslint ./src",
     "pretty": "prettier --write",
     "postpretty": "yarn lint --fix"
-  }
-  
+}

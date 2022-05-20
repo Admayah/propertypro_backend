@@ -23,7 +23,7 @@ export const getAllProperties = async (req, res) => {
   try {
     const getProperties = await propertyModel.select('*');
     if (getProperties.rows.length === 0) {
-      return res.status(404).json({ message: 'Post a property' });
+      return res.status(404).json({ message: 'Properties are not posted' });
     }
     res.status(200).json(getProperties.rows);
   } catch (err) {
@@ -36,7 +36,7 @@ export const getPropertyById = async (req, res) => {
   try {
     const getProperty = await propertyModel.select('*', ` WHERE  id = '${id}' `);
     if (getProperty.rows.length === 0) {
-      return res.status(404).json({ message: 'no property' });
+      return res.status(404).json({ message: 'Property does not exist' });
     }
     res.status(200).json(getProperty.rows);
   } catch (err) {
