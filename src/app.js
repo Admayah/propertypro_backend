@@ -27,7 +27,7 @@ const options = {
 };
 
 const openapiSpecification = swaggerJsdoc(options);
-app.use('/hello', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+app.use('/propertypro', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

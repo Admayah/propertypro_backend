@@ -8,8 +8,9 @@ const indexRouter = express.Router();
  * @swagger
  * /signup:
  *    post:
- *      summary: Adds a new User.
- *      description: Retrieve a list of users from JSONPlaceholder.
+ *      summary: Create a new User.
+ *      requestBody:
+ *        required: true
  *      responses:
  *        201:
  *          description: A list of users
@@ -53,8 +54,8 @@ indexRouter.post('/signup', validateUserInput, createAgent);
  * @swagger
  * /login:
  *    post:
- *      summary: Login in as an agent.
- *      description: Login as an agent to be able to post, edit, delete property been posted.
+ *      summary: Login a user.
+ *      description: If user account exist, user can post, edit, delete a property .
  *      requestBody:
  *        required: true
  *      responses:
