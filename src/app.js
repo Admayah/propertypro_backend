@@ -16,17 +16,28 @@ app.use('/v1', indexRouter);
 app.use('/v1', propertyRouter);
 
 const options = {
-  definition: {
-    openapi: '3.0.0',
+  swaggerDefinition: {
     info: {
-      title: 'Hello World',
+      title: 'Propertypro',
       version: '1.0.0',
     },
+    securityDefinitions: {
+      bearerAuth: {
+        type: 'apiKey',
+        name: 'Authorization',
+        scheme: 'bearer',
+        in: 'header'
+      },
+    },
   },
-  apis: ['./src/routes/*.js'], // files containing annotations as above
+  apis: ['./src/routes/*.js'],
 };
 
 const openapiSpecification = swaggerJsdoc(options);
+app.get('/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(openapiSpecification);
+});
 app.use('/propertypro', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 // eslint-disable-next-line no-unused-vars
