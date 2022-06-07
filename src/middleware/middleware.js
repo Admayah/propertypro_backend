@@ -51,10 +51,10 @@ export const validatePropertyInput = (req, res, next) => {
   if (!title || title.trim().length < 5) {
     return res.status(400).json({ message: 'Title must be more than 5 characters' });
   }
-  if (!address || address.trim().length < 5) {
+  if (!address) {
     return res.status(400).json({ message: 'address must be more than 5 characters' });
   }
-  if (!landArea || landArea.trim().length < 5) {
+  if (!landArea) {
     return res.status(400).json({ message: 'landara must be more than 5 characters' });
   }
   if (!noOfRoom || typeof (noOfRoom) !== 'number') {
