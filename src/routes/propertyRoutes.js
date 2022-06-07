@@ -64,7 +64,7 @@ const propertyRouter = express.Router();
  * /v1/properties:
  *   get:
  *      tags:
- *        - Properties information
+ *        - Property information
  *      description: Retrieve all properties added to the database
  *      produces:
  *        - application/json
@@ -136,7 +136,7 @@ propertyRouter.get('/properties/:id', getPropertyById);
  * /v1/agent/properties:
  *   post:
  *     tags:
- *       - Create a property
+ *       - Property information
  *     description: Adds a property to the database
  *     produces:
  *       - application/json
@@ -232,7 +232,7 @@ propertyRouter.get('/agent/properties/:id', verifyToken, getAgentProperties);
  * /v1/agent/properties/{id}:
  *   put:
  *      tags:
- *        - Property modification
+ *        - Property information
  *      description: Modify an already added property information
  *      produces:
  *        - application/json
@@ -298,7 +298,7 @@ propertyRouter.put('/agent/properties/:id', verifyToken, editProperty);
  * /v1/agent/properties/{id}:
  *   delete:
  *      tags:
- *        - Delete property
+ *        - Property information
  *      description: Delete already added property from database
  *      produces:
  *        - application/json

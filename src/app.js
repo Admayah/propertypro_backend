@@ -22,14 +22,6 @@ const options = {
       description: 'Users can post, edit and delete properties as an agent.',
       version: '1.0.0',
     },
-    // securityDefinitions: {
-    //   bearerAuth: {
-    //     type: 'apiKey',
-    //     name: 'Authorization',
-    //     scheme: 'bearer',
-    //     in: 'header'
-    //   },
-    // },
   },
   apis: ['./src/routes/*.js'],
 };
