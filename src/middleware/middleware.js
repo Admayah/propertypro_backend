@@ -41,13 +41,13 @@ export const validateUserInput = (req, res, next) => {
 // eslint-disable-next-line consistent-return
 export const validatePropertyInput = (req, res, next) => {
   const {
-    image, title, address, landArea, noOfRoom, noOfBath,
+    title, address, landArea, noOfRoom, noOfBath,
     noOfGarage, noOfStore, yearBuild, purpose
-  } = req.body;
+  } = JSON.parse(req.body.json);
 
-  if (!checkImageExtension(image)) {
-    return res.status(400).json({message: 'Property image must be uploaded'});
-  }
+  // if (!checkImageExtension(image)) {
+  //   return res.status(400).json({message: 'Property image must be uploaded'});
+  // }
   if (!title || title.trim().length < 5) {
     return res.status(400).json({ message: 'Title must be more than 5 characters' });
   }
@@ -57,19 +57,19 @@ export const validatePropertyInput = (req, res, next) => {
   if (!landArea) {
     return res.status(400).json({ message: 'landara must be more than 5 characters' });
   }
-  if (!noOfRoom || typeof (noOfRoom) !== 'number') {
+  if (!noOfRoom) {
     return res.status(400).json({ message: 'Number of rooms are required and must be number' });
   }
-  if (!noOfBath || typeof (noOfBath) !== 'number') {
+  if (!noOfBath) {
     return res.status(400).json({ message: 'Number of baths are  and must be number' });
   }
-  if (!noOfGarage || typeof (noOfGarage) !== 'number') {
+  if (!noOfGarage) {
     return res.status(400).json({ message: 'Number of garages are required and must be number' });
   }
-  if (!noOfStore || typeof (noOfStore) !== 'number') {
+  if (!noOfStore) {
     return res.status(400).json({ message: 'Number of stores are required and must be number' });
   }
-  if (!yearBuild || typeof (noOfRoom) !== 'number') {
+  if (!yearBuild) {
     return res.status(400).json({ message: 'Year of build is required and must be number' });
   }
   if (!purpose) {

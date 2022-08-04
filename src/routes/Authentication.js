@@ -1,5 +1,6 @@
 import express from 'express';
-import { createAgent, loginAgent } from '../controllers/AgentAuthentication';
+import { createAgent, getAgents, loginAgent, singleAgent } from '../controllers/AgentAuthentication';
+import uploadPropertyImage from '../controllers/imageController';
 import { validateUserInput } from '../middleware/middleware';
 
 const indexRouter = express.Router();
@@ -111,5 +112,11 @@ indexRouter.post('/signup', validateUserInput, createAgent);
  *          description:  Internal server error
  */
 indexRouter.post('/login', loginAgent);
+
+indexRouter.get('/agents', getAgents);
+
+indexRouter.get('/agent/about/:id', singleAgent)
+
+indexRouter.post('/upload', uploadPropertyImage)
 
 export default indexRouter;

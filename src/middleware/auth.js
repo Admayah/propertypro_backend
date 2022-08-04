@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
+  console.log(req)
   // eslint-disable-next-line dot-notation
   const token = req.headers['authorization'];
   if (!token) {

@@ -1,19 +1,24 @@
 import Model from '../../models/model';
+import uploadPropertyImage from '../imageController';
 
 const propertyModel = new Model('properties');
 
 // eslint-disable-next-line consistent-return
 export const createProperty = async (req, res) => {
+  console.log(JSON.parse(req.body.fileName), req.files)
   const { id } = req.user.newUser;
   const {
-    image, title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose
-  } = req.body;
-  const columns = 'agent_id, image_url, title, address, land_area, no_of_rooms, no_of_bathrooms, no_of_garage, no_of_store, year_of_build, purpose';
-  const values = `'${id}', '${image}', '${title}', '${address}', '${landArea}', '${noOfRoom}', '${noOfBath}', '${noOfGarage}', '${noOfStore}', '${yearBuild}', '${purpose}' `;
+    title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose, price
+  } = JSON.parse(req.body.fileName);
+  const getImageUrl = await uploadPropertyImage(req)
+  console.log('this is the image url ====>', getImageUrl)
+  const columns = 'agent_id, image_url, title, address, land_area, no_of_rooms, no_of_bathrooms, no_of_garage, no_of_store, year_of_build, purpose, price';
+  const values = `'${id}', '${getImageUrl}', '${title}', '${address}', '${landArea}', '${noOfRoom}', '${noOfBath}', '${noOfGarage}', '${noOfStore}', '${yearBuild}', '${purpose}', '${price}' `;
   try {
     const data = await propertyModel.insertWithReturn(columns, values);
     res.status(201).json(data.rows);
   } catch (err) {
+    console.log(err)
     return res.status(500).json({ messages: err.stack.messages });
   }
 };
@@ -27,6 +32,7 @@ export const getAllProperties = async (req, res) => {
     }
     res.status(200).json(getProperties.rows);
   } catch (err) {
+    console.log(err)
     res.status(500).json({ messages: err.stack.messages });
   }
 };
@@ -53,6 +59,20 @@ export const getAgentProperties = async (req, res) => {
   } catch (err) {
     res.status(500).json({ messages: err.stack });
   }
+};
+
+// eslint-disable-next-line consistent-return
+export const singleProperty = async (req, res, next) => {
+  const userId = req.params.id;
+  const { id } = req.user.newUser;
+  // const singleInfo = req.body;
+  try {
+    const singleItem = await propertyModel.select(req.body, `  WHERE id = ${userId}  AND agent_id = ${id} `);
+    return res.status(200).send( singleItem.rows );
+  } catch (err) {
+    res.status(500).json({ messages: err.stack });
+  }
+  next();
 };
 
 // eslint-disable-next-line consistent-return
