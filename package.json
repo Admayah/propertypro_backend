@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "preset": "babel ./src -out-dir build",
+        "preset": "babel ./src -d build",
         "start": "node ./build/bin/www",
         "startdev": "nodemon --exec babel-node ./src/bin/www",
         "runQuery": "babel-node ./src/utils/runQuery"
