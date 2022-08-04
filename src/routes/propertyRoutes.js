@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   getAgentProperties, getAllProperties, createProperty,
-  deleteProperty, editProperty, getPropertyById
+  deleteProperty, editProperty, getPropertyById, singleProperty
 } from '../controllers/propertyInfo/propertyController';
 import { validatePropertyInput } from '../middleware/middleware';
 import { verifyToken } from '../middleware/auth';
@@ -180,7 +180,7 @@ propertyRouter.get('/properties/:id', getPropertyById);
  *         description: Internal server error
  */
 
-propertyRouter.post('/agent/properties', verifyToken, validatePropertyInput, createProperty);
+propertyRouter.post('/agent/properties', verifyToken,  createProperty);
 
 /**
  * @swagger
@@ -225,7 +225,10 @@ propertyRouter.post('/agent/properties', verifyToken, validatePropertyInput, cre
  *        description: Internal server error
  */
 
-propertyRouter.get('/agent/properties/:id', verifyToken, getAgentProperties);
+propertyRouter.get('/agent/properties', verifyToken, getAgentProperties);
+
+propertyRouter.get('/agent/properties/:id', verifyToken, singleProperty );
+
 
 /**
  * @swagger

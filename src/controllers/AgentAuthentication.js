@@ -49,3 +49,30 @@ export const loginAgent = async (req, res) => {
     res.status(400).json({ message: err.stack });
   }
 };
+
+
+export const getAgents = async (req, res) => {
+  try {
+    const agents = await agentModel.select('*');
+    if (agents.rows.length === 0) {
+      return res.status(404).json({ message: 'Properties are not posted' });
+    }
+    res.status(200).json(agents.rows);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const singleAgent = async (req, res) => {
+  const {id} = req.params
+  console.log(id)
+  try {
+    const agents = await agentModel.select('*', ` WHERE  id = '${id}' `);
+    if (agents.rows.length === 0) {
+      return res.status(404).json({ message: 'Properties are not posted' });
+    }
+    res.status(200).json(agents.rows);
+  } catch (error) {
+    console.log(error)
+  }
+}
