@@ -5,9 +5,9 @@
     "scripts": {
         "preset": "babel ./src -d build",
         "start": "node ./build/bin/www",
+        "heroku-postbuild": "NODE_ENV=production && npm run preset",
         "startdev": "nodemon --exec babel-node ./src/bin/www",
-        "runQuery": "babel-node ./src/utils/runQuery",
-        "heroku-postbuild": "NODE_ENV=production && npm run preset"
+        "runQuery": "babel-node ./src/utils/runQuery"
     },
     "dependencies": {
         "axios": "^0.26.1",
