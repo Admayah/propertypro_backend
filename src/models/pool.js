@@ -24,7 +24,7 @@ dotenv.config();
 //   });
 
  export const pool = new Pool({
-    connectionString:`${DATABASE_URL}?sslmode=no-verify`,
+    connectionString:`${CONNECTION_STRING}?sslmode=no-verify`,
     ssl: {
       rejectUnauthorized: false,
     }
