@@ -1,5 +1,13 @@
 export const createAgentTable = `
 DROP TABLE IF EXISTS agents;
+CREATE TABLE "agents" (
+  "id" serial primary key,
+  "first_name" varchar(255) NOT NULL,
+  "last_name" varchar(255) NOT NULL,
+  "email" varchar(255) UNIQUE NOT NULL,
+  "password" varchar(255) NOT NULL,
+  "phone_no" integer NOT NULL
+);
 `;
 
 export const createPropertyTable = `
