@@ -12,6 +12,6 @@ export const executeQueryArray = async arr => new Promise(resolve => {
   });
 });
 
-export const createPropertyTables = () => executeQueryArray([ createPropertyTable ]);
+export const createPropertyTables = () => executeQueryArray([ createAgentTable ]);
 
-export const createAgentTables = () => executeQueryArray([ createAgentTable ]);
+export const createAgentTables = () => executeQueryArray([ createPropertyTable ]);
