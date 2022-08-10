@@ -5,7 +5,7 @@ const propertyModel = new Model('properties');
 
 // eslint-disable-next-line consistent-return
 export const createProperty = async (req, res) => {
-  console.log(JSON.parse(req.body.fileName), req.files)
+  // console.log(JSON.parse(req.body.fileName), req.files)
   const { id } = req.user.newUser;
   const {
     title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose, price
