@@ -184,7 +184,7 @@ propertyRouter.post('/agent/properties', verifyToken,  createProperty);
 
 /**
  * @swagger
- * /v1/agent/properties/{id}:
+ * /v1/agent/properties:
  *   get:
  *      tags:
  *        -  Property information
@@ -192,10 +192,6 @@ propertyRouter.post('/agent/properties', verifyToken,  createProperty);
  *      produces:
  *        - application/json
  *      parameters:
- *        - name: id
- *          in: path
- *          description: ID of property posted by a specific agent
- *          required: true
  *        - name: Authorization
  *          in: header
  *          description: an authentication header
