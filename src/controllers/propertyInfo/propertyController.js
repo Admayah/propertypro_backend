@@ -8,7 +8,7 @@ export const createProperty = async (req, res) => {
   // console.log(JSON.parse(req.body.fileName), req.files)
   const { id } = req.user.newUser;
   const {
-    title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose, price
+    image, title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose, price
   } = req.body;
   // const getImageUrl = await uploadPropertyImage(req)
   // console.log('this is the image url ====>', getImageUrl)
