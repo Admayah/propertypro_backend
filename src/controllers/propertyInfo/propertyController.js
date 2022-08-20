@@ -87,6 +87,7 @@ export const editProperty = async (req, res, next) => {
     res.status(500).json({ messages: err.stack });
   }
   next();
+  
 };
 
 // eslint-disable-next-line consistent-return
