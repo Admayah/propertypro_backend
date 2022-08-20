@@ -1,10 +1,10 @@
-import { Pool, Client } from 'pg';
+import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import { CONNECTION_STRING } from '../settings';
 
 dotenv.config();
 
-export const pool = new Pool({ CONNECTION_STRING });
+// export const pool = new Pool({ databaseURL: process.env.CONNECTION_STRING });
 
 // const client = new Client({
 //     connectionString: process.env.DATABASE_URL,
@@ -28,17 +28,17 @@ export const pool = new Pool({ CONNECTION_STRING });
 //     ssl: process.env.CONNECTION_STRING ? true : false
 // });
 
-// export const pool = (() => {
-//   if (process.env.NODE_ENV !== 'production') {
-//       return new Pool({
-//           connectionString: process.env.CONNECTION_STRING,
-//           ssl: false
-//       });
-//   } else {
-//       return new Pool({
-//           connectionString: `${process.env.CONNECTION_STRING}?sslmode=no-verify`,
-//           ssl: {
-//               rejectUnauthorized: false
-//             }
-//       });
-//   } })();
+export const pool = (() => {
+  if (process.env.NODE_ENV !== 'production') {
+      return new Pool({
+          connectionString: process.env.CONNECTION_STRING,
+          ssl: false
+      });
+  } else {
+      return new Pool({
+          connectionString: `${process.env.CONNECTION_STRING}?sslmode=no-verify`,
+          ssl: {
+              rejectUnauthorized: false
+            }
+      });
+  } })();

@@ -1,8 +1,5 @@
-import { pool } from '../models/pool';
-import {
-  createAgentTable,
-  createPropertyTable,
-} from './queries';
+import { pool } from '../models/pool.js';
+import { createAgentTable, createPropertyTable } from "./queries"
 
 export const executeQueryArray = async arr => new Promise(resolve => {
   const stop = arr.length;
