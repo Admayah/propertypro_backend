@@ -17,7 +17,9 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET
 })
-app.use(cors());
+app.use(cors({
+  origin: process.env.ORIGIN_URL
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
