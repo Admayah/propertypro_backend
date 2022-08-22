@@ -8,12 +8,12 @@ export const createProperty = async (req, res) => {
   // console.log(JSON.parse(req.body.fileName), req.files)
   const { id } = req.user.newUser;
   const {
-    image, title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose, price
-  } = req.body;
-  // const getImageUrl = await uploadPropertyImage(req)
+     title, address, landArea, noOfRoom, noOfBath, noOfGarage, noOfStore, yearBuild, purpose, price
+  } = JSON.parse(req.body.fileName);
+  const getImageUrl = await uploadPropertyImage(req)
   // console.log('this is the image url ====>', getImageUrl)
   const columns = 'agent_id, image_url, title, address, land_area, no_of_rooms, no_of_bathrooms, no_of_garage, no_of_store, year_of_build, purpose, price';
-  const values = `'${id}', '${image}', '${title}', '${address}', '${landArea}', '${noOfRoom}', '${noOfBath}', '${noOfGarage}', '${noOfStore}', '${yearBuild}', '${purpose}', '${price}' `;
+  const values = `'${id}', '${getImageUrl}', '${title}', '${address}', '${landArea}', '${noOfRoom}', '${noOfBath}', '${noOfGarage}', '${noOfStore}', '${yearBuild}', '${purpose}', '${price}' `;
   try {
     const data = await propertyModel.insertWithReturn(columns, values);
     res.status(201).json(data.rows);
