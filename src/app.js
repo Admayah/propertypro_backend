@@ -18,10 +18,16 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET
 });
 
-const corsOptions ={
-  origin: process.env.ORIGIN_URL, 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
+const  whitelist  = process.env.ORIGIN_URL
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
 }
 
 app.use(cors(corsOptions));
