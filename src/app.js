@@ -19,7 +19,7 @@ cloudinary.config({
 });
 
 app.use(cors({
-  origin: ['http://localhost:3000', `'${process.env.ORIGIN_URL}'`]
+  origin: ['http://localhost:3000', 'https://property-pro-frontend-app.herokuapp.com']
 }))
 
 // const  whitelist  = process.env.ORIGIN_URL
