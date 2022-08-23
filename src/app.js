@@ -18,17 +18,21 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET
 });
 
-const  whitelist  = process.env.ORIGIN_URL
+app.use(cors({
+  origin: ['http://localhost:3000', `'${process.env.ORIGIN_URL}'`]
+}))
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-};
+// const  whitelist  = process.env.ORIGIN_URL
+
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// };
 
 // app.use(cors(corsOptions));
 app.use(logger('dev'));
