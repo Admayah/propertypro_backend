@@ -20,7 +20,7 @@ cloudinary.config({
 
 const  whitelist  = process.env.ORIGIN_URL
 
-var corsOptions = {
+const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
