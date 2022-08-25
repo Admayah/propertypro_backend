@@ -7,7 +7,7 @@
         "start": "node ./build/bin/www",
         "heroku-postbuild": "NODE_ENV=production && npm run preset",
         "startdev": "nodemon --exec babel-node ./src/bin/www",
-        "runQuery": "./build/utils/runQuery"
+        "runQuery": "node ./build/utils/runQuery"
     },
     "dependencies": {
         "@babel/runtime": "^7.18.9",
