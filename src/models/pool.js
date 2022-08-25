@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
-import { CONNECTION_STRING } from '../settings';
+// import { CONNECTION_STRING } from '../settings';
 
 dotenv.config();
 
