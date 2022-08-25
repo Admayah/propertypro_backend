@@ -7,7 +7,7 @@
         "start": "node ./build/bin/www",
         "heroku-postbuild": "NODE_ENV=production && npm run preset",
         "startdev": "nodemon --exec babel-node ./src/bin/www",
-        "runQuery": "babel-node ./src/utils/runQuery"
+        "runQuery": "./build/utils/runQuery"
     },
     "dependencies": {
         "@babel/runtime": "^7.18.9",
@@ -25,12 +25,12 @@
         "express-fileupload": "^1.4.0",
         "http-errors": "~1.6.3",
         "jsonwebtoken": "^8.5.1",
-        "lint": "^0.7.0",
+        "lint": "^1.1.2",
         "morgan": "~1.9.1",
         "pg": "^8.7.3",
         "prettier": "^2.6.0",
         "pretty": "^2.0.0",
-        "swagger-jsdoc": "^1.9.7",
+        "swagger-jsdoc": "^6.2.5",
         "swagger-ui-express": "^4.4.0"
     },
     "devDependencies": {
