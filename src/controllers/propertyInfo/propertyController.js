@@ -57,6 +57,17 @@ export const getAgentProperties = async (req, res) => {
   }
 };
 
+export const getAgentProperty = async (req, res) => {
+  const userId = req.params.id
+  const { id } = req.user.newUser;
+  try {
+    const getProperties = await propertyModel.select('*', ` WHERE  id = ${userId}  AND agent_id = ${id} `);
+    return res.status(200).json(getProperties.rows);
+  } catch (err) {
+    res.status(500).json({ messages: err.stack });
+  }
+};
+
 // eslint-disable-next-line consistent-return
 export const singleProperty = async (req, res, next) => {
   const userId = req.params.id;

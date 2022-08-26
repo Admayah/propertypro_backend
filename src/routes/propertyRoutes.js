@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   getAgentProperties, getAllProperties, createProperty,
-  deleteProperty, editProperty, getPropertyById, singleProperty
+  deleteProperty, editProperty, getPropertyById, singleProperty, getAgentProperty
 } from '../controllers/propertyInfo/propertyController';
 import { validatePropertyInput } from '../middleware/middleware';
 import { verifyToken } from '../middleware/auth';
@@ -223,7 +223,7 @@ propertyRouter.post('/agent/properties', verifyToken,  createProperty);
 
 propertyRouter.get('/agent/properties', verifyToken, getAgentProperties);
 
-propertyRouter.get('/agent/properties/:id', verifyToken, singleProperty );
+propertyRouter.get('/agent/property/:id', verifyToken, getAgentProperty );
 
 
 /**
