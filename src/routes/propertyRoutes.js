@@ -223,7 +223,10 @@ propertyRouter.post('/agent/properties', verifyToken,  createProperty);
 
 propertyRouter.get('/agent/properties', verifyToken, getAgentProperties);
 
+propertyRouter.get('/agent/properties/:id', verifyToken, singleProperty );
+
 propertyRouter.get('/agent/property/:id', verifyToken, getAgentProperty );
+
 
 
 /**

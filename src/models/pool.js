@@ -33,7 +33,7 @@ export const pool = (() => {
       return new Pool({
           connectionString: process.env.CONNECTION_STRING,
           ssl: false
-      });
+      }); 
   } else {
       return new Pool({
           connectionString: `${process.env.CONNECTION_STRING}?sslmode=no-verify`,
