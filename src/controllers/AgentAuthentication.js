@@ -40,7 +40,7 @@ export const loginAgent = async (req, res) => {
     if (!validEmail.rows.length) return res.status(400).json({ messages: 'Invalid email or password' });
     const validPassword = await bcrypt.compare(password, validEmail.rows[0].password);
     if (!validPassword) return res.status(400).json({ message: 'Invalid email or password' });
-    const { id } = data.rows[0];
+    const { id } = validEmail.rows[0];
     const user = { id, email };
     const token = jwt.sign({ user }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
