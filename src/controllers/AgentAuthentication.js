@@ -37,6 +37,7 @@ export const loginAgent = async (req, res) => {
   const { email, password } = req.body;
   try {
     const validEmail = await agentModel.select('*', ` WHERE  email = '${email}' `);
+    console.log('this is the databse info ====>', validEmail)
     if (!validEmail.rows.length) return res.status(400).json({ messages: 'Invalid email or password' });
     const validPassword = await bcrypt.compare(password, validEmail.rows[0].password);
     if (!validPassword) return res.status(400).json({ message: 'Invalid email or password' });
