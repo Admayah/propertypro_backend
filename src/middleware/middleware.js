@@ -33,7 +33,7 @@ export const validateUserInput = (req, res, next) => {
     return res.status(400).send({ message: 'password must be 8 or more character long' });
   }
   if (!validPhoneNumber(phoneNo)) {
-    return res.status(400).send({ message: 'validate phone number to be 11 digits long' });
+    return res.status(400).send({ message: 'phone number must be 11 digits' });
   }
   return next();
 };
