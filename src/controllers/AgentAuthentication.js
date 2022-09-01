@@ -46,7 +46,7 @@ export const loginAgent = async (req, res) => {
     const token = jwt.sign({ newUser }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
     })
-    return res.status(201).send({ user, token, message: 'Logged in' });
+    return res.status(201).send({ newUser, token, message: 'Logged in' });
   } catch (err) {
     res.status(400).json({ message: err.stack });
   }
