@@ -19,11 +19,11 @@ export const createAgent = async (req, res) => {
       return res.status(409).json({ message: 'Email already Exist' });
     }
     const data = await agentModel.insertWithReturn(columns, values);
-    const { id } = data.rows[0];
+    const { id, first_name, last_name, email } = data.rows[0];
     const newUser = {
-      id, firstName, lastName, email
+      id, first_name, last_name, email
     };
-    const token = jwt.sign({ newUser, id: data.rows.id }, process.env.TOKEN_KEY, {
+    const token = jwt.sign({ newUser }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
     });
     res.status(201).send({ user: newUser, token, message: 'Account created successfully' });
