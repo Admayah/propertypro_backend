@@ -43,6 +43,24 @@ app.use(fileUpload({useTempFiles: true}));
 app.use('/v1', indexRouter);
 app.use('/v1', propertyRouter);
 
+const users = [
+  {id:1, name: "User 1"},
+  {id:2, name: "User 2"},
+  {id:3, name: "User 3"},
+  {id:4, name: "User 4"},
+  {id:5, name: "User 5"},
+  {id:6, name: "User 6"},
+  {id:7, name: "User 7"},
+  {id:8, name: "User 8"},
+  {id:9, name: "User 9"},
+  {id:10, name: "User 10"},
+  {id:11, name: "User 11"},
+]
+
+// app.get('/users', paginate(users), (req, res) => {
+//   res.json(res.paginate)
+// })
+
 const options = {
   swaggerDefinition: {
     info: {
@@ -66,4 +84,49 @@ app.use((err, req, res, next) => {
   res.status(400).json({ error: err.stack });
 });
 
+ 
+// function paginate(model) {
+//   return async (req, res, next) => {
+//     const page = parseInt(req.query.page)
+//     const limit = parseInt(req.query.limit)
+  
+//     const startIndex = (page - 1) * limit
+//     const endIndex = page * limit
+  
+//     // console.log(startIndex, endIndex)
+//     const result = {}
+  
+//     if(startIndex > 0) {
+//       result.prev = {
+//         page: page - 1,
+//         limit: limit
+//       }
+//     }
+  
+//     if(endIndex < model.length) {
+//       result.next = {
+//         page: page + 1,
+//         limit: limit
+//       } 
+//     }
+  
+  
+//   try {
+//     result.result = await model.slice().limit(limit).skip(startIndex).exec()
+//     res.paginate = result
+
+//     next()
+    
+//   } catch (error) {
+//     console.log(error)
+//     res.status(500).json({message: error.messaage})
+    
+//   }
+  
+
+    
+    
+  
+//   }
+// }
 export default app;

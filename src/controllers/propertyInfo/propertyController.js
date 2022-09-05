@@ -57,6 +57,27 @@ export const getAgentProperties = async (req, res) => {
   }
 };
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 3;
+  const offset = page ? page * limit : 0;
+  return { limit, offset };
+};
+
+export const fetchPaginate = async (req, res) => {
+  const {page, size} = req.query;
+  console.log(page, size)
+  const { limit, offset } = getPagination(page, size);
+  console.log(limit, offset)
+
+  const getPaginatedproperties = await propertyModel.select('*', `LIMIT=${limit} OFFSET=${offset}`)
+  console.log(getPaginatedproperties)
+  // return async (req, res) => {
+  //   
+  //   console.log(page, size)
+  //   res.send({p: page, s: size})
+  // }
+  }
+
 export const getAgentProperty = async (req, res) => {
   const userId = req.params.id
   const { id } = req.user.newUser;
@@ -108,3 +129,6 @@ export const deleteProperty = async (req, res) => {
     res.status(500).json({ messages: err.stack.messages });
   }
 };
+
+
+
