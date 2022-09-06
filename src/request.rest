@@ -1,1 +1,5 @@
 GET http://localhost:4000/v1/clap?page=1&limit=3
+
+function handleClick (lim, page)=>{
+const query = axiosr.get('http://localhost:4000/v1/clap?page=page&limit=lim
+}

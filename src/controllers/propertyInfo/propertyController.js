@@ -53,8 +53,8 @@ const hello = [
 ];
 
 export const helloPaginate = async (req, res) => {
-const page = req.query.page;
-const limit = req.query.limit
+const page = req.query.page || 1;
+const limit = req.query.limit || 3
 
 const startIndex = (page - 1) * limit
 const endIndex = page * limit
