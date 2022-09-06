@@ -8,7 +8,7 @@ import { verifyToken } from '../middleware/auth';
 
 const propertyRouter = express.Router();
 
-propertyRouter.get("/properties", helloPaginate)
+propertyRouter.get("/properties", getAllProperties, helloPaginate)
 
 // propertyRouter.get('/properties', getPaginateProperties);
 

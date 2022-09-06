@@ -21,16 +21,10 @@ export const createProperty = async (req, res) => {
 };
 
 // eslint-disable-next-line consistent-return
-export const getAllProperties = async (req, res) => {
-  try {
+export const getAllProperties = async (req, res, next) => {
     const getProperties = await propertyModel.select('*');
-    if (getProperties.rows.length === 0) {
-      return res.status(404).json({ message: 'Properties are not posted' });
-    }
-    res.status(200).json(getProperties.rows);
-  } catch (err) {
-    res.status(500).json({ messages: err.stack.messages });
-  }
+    return req.user = getProperties.rows
+
 };
 
 const hello = [
@@ -53,18 +47,19 @@ const hello = [
 ];
 
 export const helloPaginate = async (req, res) => {
-const page = req.query.page || 1;
-const limit = req.query.limit || 3
+  console.log("function of get all properties", getAllProperties())
+// const page = req.query.page || 1;
+// const limit = req.query.limit || 3
 
-const startIndex = (page - 1) * limit
-const endIndex = page * limit
+// const startIndex = (page - 1) * limit
+// const endIndex = page * limit
 
-const {rows} = await propertyModel.select('*')
-console.log('properties rows===>', rows);
+// const {rows} = await propertyModel.select('*')
+// console.log('properties rows===>', rows);
 
-const newHelo = rows.slice(startIndex, endIndex)
-console.log('sliced row====>', newHelo)
-res.json(newHelo)
+// const newHelo = rows.slice(startIndex, endIndex)
+// console.log('sliced row====>', newHelo)
+// res.json(newHelo)
 }
 // eslint-disable-next-line consistent-return
 export const getPropertyById = async (req, res) => {
