@@ -3,7 +3,7 @@ import {
   getAgentProperties, getAllProperties, createProperty,
   deleteProperty, editProperty, getPropertyById, singleProperty, getAgentProperty, fetchPaginate, getPaginateProperties
 } from '../controllers/propertyInfo/propertyController';
-import { validatePropertyInput } from '../middleware/middleware';
+// import { validatePropertyInput } from '../middleware/middleware';
 import { verifyToken } from '../middleware/auth';
 
 const propertyRouter = express.Router();
