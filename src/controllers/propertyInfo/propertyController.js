@@ -33,29 +33,37 @@ export const getAllProperties = async (req, res) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
-export const getPaginateProperties = async (req, res) => {
-  const page = req.query.page;
-  const limit = req.query.limit;
+const hello = [
+  {
+    icon: "facebookIcon",
+    href: "https://fb.com/",
+  },
+  {
+    icon: "whatsappIcon",
+    href: "https://wa.me/",
+  },
+  {
+    icon: "instagramIcon",
+    href: "https://instagram.com/",
+  },
+  {
+    icon: "twitterIcon",
+    href: "https://twitter.com/",
+  },
+];
 
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
+export const helloPaginate = async (req, res) => {
+const page = req.query.page;
+const limit = req.query.limit
 
-  try {
-    const getProperties = await propertyModel.select('*');
-    if (getProperties.rows.length === 0) {
-      return res.status(404).json({ message: 'Properties are not posted' });
-    }
-    const getPropertiesRow = getProperties.rows
-    console.log(getPropertiesRow)
-    const newPropertiesRow = getPropertiesRow.slice(startIndex, endIndex)
-    console.log('paginated row=====>', newPropertiesRow)
-    res.status(200).json(newPropertiesRow);
-  } catch (err) {
-    res.status(500).json({ messages: err.stack.messages });
-  }
-};
+const startIndex = (page - 1) * limit
+const endIndex = page * limit
 
+const {rows} = await propertyModel.select('*')
+
+const newHelo = rows.slice(startIndex, endIndex)
+res.json(newHelo)
+}
 // eslint-disable-next-line consistent-return
 export const getPropertyById = async (req, res) => {
   const { id } = req.params;
@@ -81,8 +89,26 @@ export const getAgentProperties = async (req, res) => {
   }
 };
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 3;
+  const offset = page ? page * limit : 0;
+  return { limit, offset };
+};
 
+export const fetchPaginate = async (req, res) => {
+  const {page, size} = req.query;
+  console.log(page, size)
+  const { limit, offset } = getPagination(page, size);
+  console.log(limit, offset)
 
+  const getPaginatedproperties = await propertyModel.select('*', ` WHERE limit = ${limit} `)
+  console.log(getPaginatedproperties)
+  // return async (req, res) => {
+  //   
+  //   console.log(page, size)
+  //   res.send({p: page, s: size})
+  // }
+  }
 
 export const getAgentProperty = async (req, res) => {
   const userId = req.params.id

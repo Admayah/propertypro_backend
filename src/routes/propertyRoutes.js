@@ -1,19 +1,19 @@
 import express from 'express';
 import {
   getAgentProperties, getAllProperties, createProperty,
-  deleteProperty, editProperty, getPropertyById, singleProperty, getAgentProperty, fetchPaginate, getPaginateProperties
+  deleteProperty, editProperty, getPropertyById, singleProperty, getAgentProperty, fetchPaginate, getPaginateProperties, helloPaginate
 } from '../controllers/propertyInfo/propertyController';
-// import { validatePropertyInput } from '../middleware/middleware';
+import { validatePropertyInput } from '../middleware/middleware';
 import { verifyToken } from '../middleware/auth';
 
 const propertyRouter = express.Router();
 
+propertyRouter.get("/properties", helloPaginate)
+
+// propertyRouter.get('/properties', getPaginateProperties);
 
 
-propertyRouter.get('/properties', getPaginateProperties);
-
-
-
+// propertyRouter.get('hey', getPaginateProperties)
 propertyRouter.get('/properties/:id', getPropertyById);
 
 

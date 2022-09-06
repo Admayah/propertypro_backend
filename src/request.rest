@@ -1,1 +1,1 @@
-GET http://localhost:4000/users?page=1&limit=2
+GET http://localhost:4000/v1/clap?page=1&limit=3
