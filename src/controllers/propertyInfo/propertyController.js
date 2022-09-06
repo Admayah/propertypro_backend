@@ -47,6 +47,7 @@ export const getPaginateProperties = async (req, res) => {
       return res.status(404).json({ message: 'Properties are not posted' });
     }
     const getPropertiesRow = getProperties.rows
+    console.log(getPropertiesRow)
     const newPropertiesRow = getPropertiesRow.slice(startIndex, endIndex)
     console.log('paginated row=====>', newPropertiesRow)
     res.status(200).json(newPropertiesRow);
