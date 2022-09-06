@@ -23,8 +23,8 @@ export const createProperty = async (req, res) => {
 // eslint-disable-next-line consistent-return
 export const getAllProperties = async (req, res, next) => {
     const getProperties = await propertyModel.select('*');
-    return req.user = getProperties.rows
-
+    req.user = getProperties.rows
+next()
 };
 
 const hello = [
