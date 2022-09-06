@@ -47,6 +47,7 @@ const hello = [
 ];
 
 export const helloPaginate = async (req, res) => {
+  console.log('get req user', req.user)
   console.log("function of get all properties", getAllProperties())
 // const page = req.query.page || 1;
 // const limit = req.query.limit || 3
