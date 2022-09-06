@@ -60,7 +60,7 @@ const startIndex = (page - 1) * limit
 const endIndex = page * limit
 
 const {rows} = await propertyModel.select('*')
-console.log('properties rows===>', rows)
+console.log('properties rows===>', rows);
 
 const newHelo = rows.slice(startIndex, endIndex)
 console.log('sliced row====>', newHelo)
