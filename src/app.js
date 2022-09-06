@@ -1,6 +1,5 @@
 import logger from 'morgan';
 import express from 'express';
-import cors from 'cors'
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 const cloudinary = require('cloudinary').v2
