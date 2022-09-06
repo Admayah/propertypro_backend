@@ -12,8 +12,6 @@ propertyRouter.get("/properties", helloPaginate)
 
 // propertyRouter.get('/properties', getPaginateProperties);
 
-
-// propertyRouter.get('hey', getPaginateProperties)
 propertyRouter.get('/properties/:id', getPropertyById);
 
 
