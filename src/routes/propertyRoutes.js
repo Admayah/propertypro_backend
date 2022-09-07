@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   getAgentProperties, getAllProperties, createProperty,
-  deleteProperty, editProperty, getPropertyById, singleProperty, getAgentProperty, fetchPaginate, getPaginateProperties, helloPaginate
+  deleteProperty, editProperty, getPropertyById, singleProperty, getAgentProperty, fetchPaginate, getPaginateProperties, helloPaginate, getAllPostedProperties, fetchPaginatedData, paginatedProperties
 } from '../controllers/propertyInfo/propertyController';
 import { validatePropertyInput } from '../middleware/middleware';
 import { verifyToken } from '../middleware/auth';
@@ -33,6 +33,6 @@ propertyRouter.put('/agent/properties/:id', verifyToken, editProperty);
 
 propertyRouter.delete('/agent/properties/:id', verifyToken, deleteProperty);
 
-propertyRouter.get('/abc', fetchPaginate);
+propertyRouter.get('/abc', getAllPostedProperties, fetchPaginatedData, paginatedProperties);
 
 export default propertyRouter;

@@ -1,3 +1,4 @@
+import app from '../../app';
 import Model from '../../models/model';
 import uploadPropertyImage from '../imageController';
 
@@ -20,13 +21,6 @@ export const createProperty = async (req, res) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
-export const getAllProperties = async (req, res, next) => {
-    const getProperties = await propertyModel.select('*');
-    req.user = getProperties.rows
-next()
-};
-
 const hello = [
   {
     icon: "facebookIcon",
@@ -46,14 +40,26 @@ const hello = [
   },
 ];
 
-export const helloPaginate = async (req, res) => {
-  console.log('get req user', req.user)
-  console.log("function of get all properties", getAllProperties())
-// const page = req.query.page || 1;
-// const limit = req.query.limit || 3
+// eslint-disable-next-line consistent-return
+export const getAllProperties = async (req, res, next) => {
+    // const getProperties = await propertyModel.select('*');
+    // req.user = getProperties.rows
+    const newHelo = hello.slice(startIndex, endIndex)
+console.log('sliced row====>', newHelo)
+res.json(newHelo)
+next()
+};
 
-// const startIndex = (page - 1) * limit
-// const endIndex = page * limit
+
+
+export const helloPaginate = async (req, res) => {
+  // console.log('get req user', req.user)
+  // console.log("function of get all properties", getAllProperties())
+const page = req.query.page || 1;
+const limit = req.query.limit || 3
+
+const startIndex = (page - 1) * limit
+const endIndex = page * limit
 
 // const {rows} = await propertyModel.select('*')
 // console.log('properties rows===>', rows);
@@ -161,4 +167,45 @@ export const deleteProperty = async (req, res) => {
 };
 
 
+// export const pagenateUser = (req, res) => {
+// res.json(userArr)
+// }
 
+export const getAllPostedProperties = async(req, res, next) => {
+ const getProperties = await propertyModel.select('*');
+ const {rows} = getProperties
+ req.properties = rows
+ next()
+}
+
+
+export const fetchPaginatedData = (model) => {
+  return async (req, res, next) => {
+    model = req.properties
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
+    const results = {}
+    if (startIndex > 0) {
+      results.prev = {
+        page: page - 1,
+        limit: limit
+      }
+    }
+    if (endIndex < model.length) {
+      results.next = {
+        page: page + 1,
+        limit: limit
+      }
+    }
+    results.result = model.select('*', `ORDER BY id
+    LIMIT=${limit} OFFSET=${startIndex}`)
+    res.paginatedPages = results
+    next()
+  }
+}
+
+export const paginatedProperties = (req, res) => {
+  res.json(res.paginatedPages)
+}
