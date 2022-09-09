@@ -20,6 +20,18 @@ export const createProperty = async (req, res) => {
     return res.status(500).json({ messages: err.stack.messages });
   }
 };
+export const getAllProperties = async (req, res) => {
+  try {
+    const getProperties = await propertyModel.select('*');
+    if (getProperties.rows.length === 0) {
+      return res.status(404).json({ message: 'Properties are not posted' });
+    }
+    res.status(200).json(getProperties.rows);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ messages: err.stack.messages });
+  }
+};
 
 // const hello = [
 //   {
