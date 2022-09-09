@@ -107,11 +107,7 @@ export const fetchPaginate = async (req, res) => {
 
   const getPaginatedproperties = await propertyModel.select('*', ` WHERE limit = ${limit} `)
   console.log(getPaginatedproperties)
-  // return async (req, res) => {
-  //   
-  //   console.log(page, size)
-  //   res.send({p: page, s: size})
-  // }
+
   }
 
 export const getAgentProperty = async (req, res) => {

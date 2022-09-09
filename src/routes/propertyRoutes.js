@@ -8,7 +8,7 @@ import { verifyToken } from '../middleware/auth';
 
 const propertyRouter = express.Router();
 
-propertyRouter.get("/properties", getAllProperties, helloPaginate)
+// propertyRouter.get("/properties", getAllProperties, helloPaginate)
 
 // propertyRouter.get('/properties', getPaginateProperties);
 
@@ -33,6 +33,6 @@ propertyRouter.put('/agent/properties/:id', verifyToken, editProperty);
 
 propertyRouter.delete('/agent/properties/:id', verifyToken, deleteProperty);
 
-propertyRouter.get('/abc', getAllPostedProperties, fetchPaginatedData, paginatedProperties);
+propertyRouter.get('/properties', getAllPostedProperties, fetchPaginatedData, paginatedProperties);
 
 export default propertyRouter;
