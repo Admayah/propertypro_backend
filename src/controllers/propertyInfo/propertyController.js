@@ -21,53 +21,44 @@ export const createProperty = async (req, res) => {
   }
 };
 
-const hello = [
-  {
-    icon: "facebookIcon",
-    href: "https://fb.com/",
-  },
-  {
-    icon: "whatsappIcon",
-    href: "https://wa.me/",
-  },
-  {
-    icon: "instagramIcon",
-    href: "https://instagram.com/",
-  },
-  {
-    icon: "twitterIcon",
-    href: "https://twitter.com/",
-  },
-];
+// const hello = [
+//   {
+//     icon: "facebookIcon",
+//     href: "https://fb.com/",
+//   },
+//   {
+//     icon: "whatsappIcon",
+//     href: "https://wa.me/",
+//   },
+//   {
+//     icon: "instagramIcon",
+//     href: "https://instagram.com/",
+//   },
+//   {
+//     icon: "twitterIcon",
+//     href: "https://twitter.com/",
+//   },
+// ];
 
 // eslint-disable-next-line consistent-return
-export const getAllProperties = async (req, res, next) => {
-    // const getProperties = await propertyModel.select('*');
-    // req.user = getProperties.rows
-    const newHelo = hello.slice(startIndex, endIndex)
-console.log('sliced row====>', newHelo)
-res.json(newHelo)
-next()
-};
+// export const getAllProperties = async (req, res, next) => {
 
-
-
-export const helloPaginate = async (req, res) => {
-  // console.log('get req user', req.user)
-  // console.log("function of get all properties", getAllProperties())
-const page = req.query.page || 1;
-const limit = req.query.limit || 3
-
-const startIndex = (page - 1) * limit
-const endIndex = page * limit
-
-// const {rows} = await propertyModel.select('*')
-// console.log('properties rows===>', rows);
-
-// const newHelo = rows.slice(startIndex, endIndex)
+//     const newHelo = hello.slice(startIndex, endIndex)
 // console.log('sliced row====>', newHelo)
 // res.json(newHelo)
-}
+// next()
+// };
+
+
+
+// export const helloPaginate = async (req, res) => {
+
+// const page = req.query.page || 1;
+// const limit = req.query.limit || 3
+
+// const startIndex = (page - 1) * limit
+// const endIndex = page * limit
+// }
 // eslint-disable-next-line consistent-return
 export const getPropertyById = async (req, res) => {
   const { id } = req.params;
@@ -204,4 +195,4 @@ export const fetchPaginatedData = (model) => {
 
 export const paginatedProperties = (req, res) => {
   res.json(res.paginatedPages)
-}
+};

@@ -33,6 +33,6 @@ propertyRouter.put('/agent/properties/:id', verifyToken, editProperty);
 
 propertyRouter.delete('/agent/properties/:id', verifyToken, deleteProperty);
 
-propertyRouter.get('/properties', getAllPostedProperties, fetchPaginatedData, paginatedProperties)
+propertyRouter.get('/properties', getAllPostedProperties, fetchPaginatedData, paginatedProperties);
 
 export default propertyRouter;
