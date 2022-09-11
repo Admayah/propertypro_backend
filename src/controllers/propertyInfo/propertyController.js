@@ -21,7 +21,14 @@ export const createProperty = async (req, res) => {
   }
 };
 export const getAllProperties = async (req, res) => {
+  const {rooms} = req.query;
+  console.log('query showing no of rooms', rooms)
   try {
+    if (rooms && !rooms === 'All') {
+      const getProperties = await propertyModel.select('*', ` WHERE no_of_rooms = ${rooms} `);
+      console.log('filtered by no of rooms', getProperties)
+      return res.status(200).json(getProperties.rows)
+    }
     const getProperties = await propertyModel.select('*');
     if (getProperties.rows.length === 0) {
       return res.status(404).json({ message: 'Properties are not posted' });
