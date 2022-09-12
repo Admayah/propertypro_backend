@@ -26,8 +26,8 @@ export const getAllProperties = async (req, res) => {
   try {
     if (rooms) {
       const getProperties = await propertyModel.select('*', ` WHERE no_of_rooms = ${rooms} `);
-      console.log('filtered by no of rooms', getProperties)
-      return res.status(200).json(getProperties.rows)
+      console.log('filtered by no of rooms', getProperties);
+      return res.status(200).json(getProperties.rows);
     }
     const getProperties = await propertyModel.select('*');
     if (getProperties.rows.length === 0) {
