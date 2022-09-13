@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAgent, getAgents, loginAgent, singleAgent } from '../controllers/AgentAuthentication';
+import { createAgent, editAgentInfo, getAgents, loginAgent, singleAgent } from '../controllers/AgentAuthentication';
 import uploadPropertyImage from '../controllers/imageController';
 import { validateUserInput } from '../middleware/middleware';
 
@@ -11,6 +11,8 @@ indexRouter.post('/signup', validateUserInput, createAgent);
 indexRouter.post('/login', loginAgent);
 
 indexRouter.get('/agents', getAgents);
+
+indexRouter.put('/agent/edit', editAgentInfo)
 
 indexRouter.get('/agent/about/:id', singleAgent)
 

@@ -78,3 +78,17 @@ export const singleAgent = async (req, res) => {
     console.log(error)
   }
 };
+
+// eslint-disable-next-line consistent-return
+export const editAgentInfo = async (req, res, next) => {
+  const { id } = req.user.newUser;
+  const editedInfo = req.body;
+  try {
+    await agentModel.update(req.body, `  WHERE id = ${id} `);
+    return res.status(200).send({ success: true, editedInfo, message: 'Profile updated successfully' });
+  } catch (err) {
+    res.status(500).json({ messages: err.stack });
+  }
+  next();
+  
+};
