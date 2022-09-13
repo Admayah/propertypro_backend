@@ -33,7 +33,7 @@ export const getAllProperties = async (req, res) => {
     if (getProperties.rows.length === 0) {
       return res.status(404).json({ message: 'Properties are not posted' });
     }
-    if(!rooms) {
+    if(!req.query) {
       const getProperties = await propertyModel.select('*');
       return res.status(200).json(getProperties.rows);
     }
