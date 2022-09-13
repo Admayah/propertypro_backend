@@ -33,7 +33,7 @@ export const getAllProperties = async (req, res) => {
     if (getProperties.rows.length === 0) {
       return res.status(404).json({ message: 'Properties are not posted' });
     }
-    res.status(200).json(getProperties.rows);
+    return res.status(200).json(getProperties.rows);
   } catch (err) {
     console.log(err)
     res.status(500).json({ messages: err.stack.messages });
