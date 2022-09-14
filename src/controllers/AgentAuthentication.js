@@ -98,6 +98,7 @@ export const editAgentInfo = async (req, res, next) => {
     return res.send(400).json('Incorrect passsword')
 
   } catch (err) {
+    console.log(err)
     res.status(500).json({ messages: err.stack });
   }
   next();
