@@ -6,7 +6,9 @@ CREATE TABLE "agents" (
   "last_name" varchar(255) NOT NULL,
   "email" varchar(255) UNIQUE NOT NULL,
   "password" varchar(255) NOT NULL,
-  "phone_no" integer NOT NULL
+  "phone_no" integer NOT NULL,
+  "state" varchar,
+  "city" varchar
 );
 `;
 
