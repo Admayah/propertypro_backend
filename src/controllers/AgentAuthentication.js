@@ -14,7 +14,7 @@ export const createAgent = async (req, res) => {
   const columns = 'first_name, last_name, email, password, phone_no';
   const values = `'${firstName}', '${lastName}', '${email}', '${hashedPassword}', '${phoneNo}'`;
   try {
-    const validEmail = await agentModel.select('*', ` WHERE  email = '${email}' `);
+    const validEmail = await agentModel.select('*', ` WHERE  email = ${email} `);
     if (validEmail.rows.length > 0) {
       return res.status(409).json({ message: 'Email already Exist' });
     }
@@ -82,10 +82,19 @@ export const singleAgent = async (req, res) => {
 // eslint-disable-next-line consistent-return
 export const editAgentInfo = async (req, res, next) => {
   const { id } = req.user.newUser;
-  const editedInfo = req.body;
+  const {first_name, last_name, email, password, phone_no, state, city, new_password} = req.body;
   try {
-    await agentModel.update(req.body, `  WHERE id = ${id} `);
-    return res.status(200).send({ success: true, editedInfo, message: 'Profile updated successfully' });
+    const selectUser = await agentModel.select('*', ` WHERE id = ${id} `)
+    if(new_password){
+      const confirmPassword = await bcrypt.compare(password, selectUser.rows[0].password)
+      return confirmPassword;
+    }
+    if(confirmPassword) {
+      await agentModel.update(req.body, `  WHERE id = ${id} `);
+      return res.status(200).json({ success: true, first_name, last_name, email, password, phone_no, state, city, new_password , message: 'Profile updated successfully' });
+    }
+    return res.send(400).json('Incorrect passsword')
+
   } catch (err) {
     res.status(500).json({ messages: err.stack });
   }
