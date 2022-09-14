@@ -102,8 +102,6 @@ export const editAgentInfo = async (req, res, next) => {
 
   } catch (err) {
     console.log(err)
-    res.status(500).json({ messages: err.stack });
+   return res.status(500).json({ messages: err.stack });
   }
-  next();
-  
 };
