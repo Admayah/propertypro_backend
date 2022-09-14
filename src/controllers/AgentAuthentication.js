@@ -91,6 +91,7 @@ export const editAgentInfo = async (req, res, next) => {
       const confirmPassword = await bcrypt.compare(password, selectUser.rows[0].password)
       return confirmPassword;
     }
+    console.log(selectUser, 'selected user from db')
     if(confirmPassword) {
       await agentModel.update(req.body, ` WHERE id = ${id} `);
       return res.status(200).json({ success: true,  message: 'Profile updated successfully' });
