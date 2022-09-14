@@ -89,14 +89,15 @@ export const editAgentInfo = async (req, res, next) => {
     const selectUser = await agentModel.select('*', ` WHERE id = ${id} `)
     if(new_password){
       const confirmPassword = await bcrypt.compare(password, selectUser.rows[0].password)
-      console.log(confirmPassword, 'hello password')
-      return confirmPassword;
+      if(confirmPassword) {
+        await agentModel.update(req.body, ` WHERE id = ${id} `);
+        return res.status(200).json({ success: true,  message: 'Profile updated successfully' });
+      }
+      // console.log(confirmPassword, 'hello password')
+      // return confirmPassword;
     }
     console.log(selectUser, 'selected user from db')
-    if(confirmPassword) {
-      await agentModel.update(req.body, ` WHERE id = ${id} `);
-      return res.status(200).json({ success: true,  message: 'Profile updated successfully' });
-    }
+
     return res.send(400).json('Incorrect passsword')
 
   } catch (err) {
