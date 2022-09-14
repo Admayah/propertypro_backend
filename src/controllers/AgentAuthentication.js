@@ -83,6 +83,8 @@ export const singleAgent = async (req, res) => {
 export const editAgentInfo = async (req, res, next) => {
   const { id } = req.user.newUser;
   const {first_name, last_name, email, password, phone_no, state, city, new_password} = req.body;
+
+  console.log('this is reques body info', req.body)
   try {
     const selectUser = await agentModel.select('*', ` WHERE id = ${id} `)
     if(new_password){
@@ -90,7 +92,7 @@ export const editAgentInfo = async (req, res, next) => {
       return confirmPassword;
     }
     if(confirmPassword) {
-      await agentModel.update(req.body, `  WHERE id = ${id} `);
+      await agentModel.update(req.body, ` WHERE id = ${id} `);
       return res.status(200).json({ success: true, first_name, last_name, email, password, phone_no, state, city, new_password , message: 'Profile updated successfully' });
     }
     return res.send(400).json('Incorrect passsword')
