@@ -89,6 +89,7 @@ export const editAgentInfo = async (req, res, next) => {
     const selectUser = await agentModel.select('*', ` WHERE id = ${id} `)
     if(new_password){
       const confirmPassword = await bcrypt.compare(password, selectUser.rows[0].password)
+      console.log(confirmPassword, 'hello password')
       return confirmPassword;
     }
     console.log(selectUser, 'selected user from db')
