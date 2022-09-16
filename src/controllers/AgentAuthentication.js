@@ -28,7 +28,7 @@ export const createAgent = async (req, res) => {
     });
     res.status(201).send({ user: newUser, token, message: 'Account created successfully' });
   } catch (err) {
-    res.status(400).json({ message: err.stack });
+    res.status(400).json({ message: err });
   }
 };
 
