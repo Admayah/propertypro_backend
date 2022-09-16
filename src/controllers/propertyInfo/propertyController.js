@@ -104,22 +104,22 @@ export const getAgentProperties = async (req, res) => {
   }
 };
 
-const getPagination = (page, size) => {
-  const limit = size ? +size : 3;
-  const offset = page ? page * limit : 0;
-  return { limit, offset };
-};
+// const getPagination = (page, size) => {
+//   const limit = size ? +size : 3;
+//   const offset = page ? page * limit : 0;
+//   return { limit, offset };
+// };
 
-export const fetchPaginate = async (req, res) => {
-  const {page, size} = req.query;
-  console.log(page, size)
-  const { limit, offset } = getPagination(page, size);
-  console.log(limit, offset)
+// export const fetchPaginate = async (req, res) => {
+//   const {page, size} = req.query;
+//   console.log(page, size)
+//   const { limit, offset } = getPagination(page, size);
+//   console.log(limit, offset)
 
-  const getPaginatedproperties = await propertyModel.select('*', ` WHERE limit = ${limit} `)
-  console.log(getPaginatedproperties)
+//   const getPaginatedproperties = await propertyModel.select('*', ` WHERE limit = ${limit} `)
+//   console.log(getPaginatedproperties)
 
-  }
+//   }
 
 export const getAgentProperty = async (req, res) => {
   const userId = req.params.id

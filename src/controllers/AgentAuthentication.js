@@ -23,12 +23,14 @@ export const createAgent = async (req, res) => {
     const newUser = {
       id, first_name, last_name, email
     };
+    console.log(newUser)
     const token = jwt.sign({ newUser }, process.env.TOKEN_KEY, {
       expiresIn: '2d',
     });
     res.status(201).send({ user: newUser, token, message: 'Account created successfully' });
   } catch (err) {
-    res.status(400).json({ message: err });
+    console.log(err)
+    res.status(400).json({ message: err.stack });
   }
 };
 
