@@ -1,4 +1,4 @@
-import { createPropertyTables, createAgentTables } from './queryFunction';
+import { createAgentTables, createPropertyTables } from "./queryFunction";
 
 (async () => {
   await createAgentTables();

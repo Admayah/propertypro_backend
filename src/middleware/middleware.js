@@ -5,7 +5,7 @@ export const validateEmail = (email) => {
 };
 
 export const validPhoneNumber = (number) => {
-  const phonenum = /^\d{10}$/;
+  const phonenum = /^\d{11}$/;
   return phonenum.test(number);
 };
 
@@ -33,7 +33,7 @@ export const validateUserInput = (req, res, next) => {
     return res.status(400).send({ message: 'password must be 8 or more character long' });
   }
   if (!validPhoneNumber(phoneNo)) {
-    return res.status(400).send({ message: 'Invalid phoneNo' });
+    return res.status(400).send({ message: 'phone number must be 11 digits' });
   }
   return next();
 };
@@ -77,3 +77,5 @@ export const validatePropertyInput = (req, res, next) => {
   }
   next();
 };
+
+

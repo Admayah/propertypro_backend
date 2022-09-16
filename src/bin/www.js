@@ -48,7 +48,7 @@ const onError = (error) => {
  * Event listener for HTTP server "listening" event.
  */
 const onListening = () => {
-  const addr = server.address();
+  const addr = server.address().port;
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
 };
