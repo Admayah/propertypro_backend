@@ -15,7 +15,7 @@ indexRouter.get('/agents', getAgents);
 
 indexRouter.put('/agent/edit', verifyToken, editAgentInfo)
 
-indexRouter.get('/agent/about/:id', singleAgent)
+indexRouter.get('/agent', verifyToken, singleAgent)
 
 indexRouter.post('/upload', uploadPropertyImage)
 

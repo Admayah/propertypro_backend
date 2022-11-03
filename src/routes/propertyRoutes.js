@@ -12,7 +12,7 @@ const propertyRouter = express.Router();
 
 // propertyRouter.get('/properties', getPaginateProperties);
 
-propertyRouter.get('/properties/:id', getPropertyById);
+propertyRouter.get('/property/:id', getPropertyById);
 
 
 propertyRouter.post('/agent/properties', verifyToken,  createProperty);
@@ -33,6 +33,6 @@ propertyRouter.put('/agent/properties/:id', verifyToken, editProperty);
 
 propertyRouter.delete('/agent/properties/:id', verifyToken, deleteProperty);
 
-propertyRouter.get('/properties', getAllProperties);
+propertyRouter.get('/properties', getAllPostedProperties, fetchPaginatedData, paginatedProperties);
 
 export default propertyRouter;
